@@ -31,7 +31,7 @@ class HomePagePriceTracker extends StatefulWidget {
 }
 
 class _HomePagePriceTrackerState extends State<HomePagePriceTracker> {
-  TrackerTestPackage helpers = TrackerTestPackage();
+  TrackerCoinPackage helpers = TrackerCoinPackage();
 
   @override
   Widget build(BuildContext context) {

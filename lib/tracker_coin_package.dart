@@ -4,7 +4,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-class TrackerTestPackage {
+class TrackerCoinPackage {
   /// This is the main method of the package [fetchCoin] where we use the http package to call an api.
   /// here we access coingecko free api to check coin information.
   Future<List<Coin>> fetchCoin() async {
