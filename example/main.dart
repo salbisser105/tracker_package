@@ -49,7 +49,7 @@ class _HomePagePriceTrackerState extends State<HomePagePriceTracker> {
                 fontWeight: FontWeight.bold),
           ),
         ),
-        body: FutureBuilder<List<Coin>>(
+        body: FutureBuilder<List<CoinModel>>(
             future: helpers.fetchCoin(),
             builder: (context, snapshot) {
               var data = snapshot.data;

@@ -4,3 +4,6 @@
 * Initial comments of the package.
 * Adding the license and the README.md
 
+## 0.0.2
+* Update of the comments inside our package.
+* Updates inside pubspec.yaml
