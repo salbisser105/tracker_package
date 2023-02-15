@@ -11,10 +11,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      title: 'Crypto Package',
+      debugShowCheckedModeBanner: false,
       initialRoute: 'page1',
       routes: {
         'page1': ((context) => const HomePagePriceTracker()),
@@ -35,6 +33,7 @@ class _HomePagePriceTrackerState extends State<HomePagePriceTracker> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Scaffold(
         backgroundColor: Colors.grey[300],
         appBar: AppBar(
@@ -61,12 +60,15 @@ class _HomePagePriceTrackerState extends State<HomePagePriceTracker> {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
                       horizontal: 20.0, vertical: 20),
-                  child: ListView.builder(
+                  child: ListView.separated(
                       scrollDirection: Axis.vertical,
-                      itemCount: data?.length,
+                      itemCount: data!.length,
+                      separatorBuilder: (BuildContext context, int index) {
+                        return SizedBox(height: size.height * 0.018);
+                      },
                       itemBuilder: (context, index) {
                         return CoinCardWidget(
-                          name: data![index].name,
+                          name: data[index].name,
                           symbol: data[index].symbol,
                           imageUrl: data[index].imageUrl,
                           price: data[index].price.toDouble(),
@@ -81,8 +83,10 @@ class _HomePagePriceTrackerState extends State<HomePagePriceTracker> {
   }
 }
 
+/// [CoinCardWidget]
+//Example class that we are using to consume our package.
 class CoinCardWidget extends StatelessWidget {
-  CoinCardWidget({
+  const CoinCardWidget({
     Key? key,
     required this.name,
     required this.symbol,
@@ -92,12 +96,12 @@ class CoinCardWidget extends StatelessWidget {
     required this.changePercentage,
   }) : super(key: key);
 
-  String name;
-  String symbol;
-  String imageUrl;
-  double price;
-  double change;
-  double changePercentage;
+  final String name;
+  final String symbol;
+  final String imageUrl;
+  final double price;
+  final double change;
+  final double changePercentage;
 
   @override
   Widget build(BuildContext context) {
@@ -105,8 +109,8 @@ class CoinCardWidget extends StatelessWidget {
       padding: const EdgeInsets.all(5.0),
       child: Container(
         height: 100,
-        width: MediaQuery.of(context).size.width * 0.99,
-        decoration: boxDecoration(),
+        width: MediaQuery.of(context).size.width * 0.9,
+        decoration: boxDecoration(Colors.white),
         child: Padding(
           padding: const EdgeInsets.only(
             left: 4.0,
@@ -115,7 +119,7 @@ class CoinCardWidget extends StatelessWidget {
             children: [
               Container(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
-                  decoration: boxDecoration(),
+                  decoration: boxDecoration(Colors.grey[300]!),
                   height: 55,
                   width: 55,
                   child: Image.network(imageUrl)),
@@ -196,15 +200,15 @@ class CoinCardWidget extends StatelessWidget {
   }
 }
 
-boxDecoration() {
+boxDecoration(Color color) {
   return BoxDecoration(
-    color: Colors.grey[300],
+    color: color,
     borderRadius: BorderRadius.circular(20),
     boxShadow: const [
       BoxShadow(
           color: Colors.white,
-          offset: Offset(-4, -4),
-          blurRadius: 10,
+          offset: Offset(0, 0),
+          blurRadius: 1,
           spreadRadius: 1)
     ],
   );

@@ -1,6 +1,6 @@
 name: tracker_coin_package
 description: A coin tracker package developed for flutter, using HTTP dependencies and fetching the information from coingecko.
-version: 0.0.2
+version: 0.0.3
 homepage: https://github.com/salbisser105/tracker_package
 
 environment:
